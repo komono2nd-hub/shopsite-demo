@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>出品者一覧 - マチカド！</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/sellers.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <button class="hamburger" id="hamburger" aria-label="メニュー">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <a href="index.html" class="logo">
+                    <h1>マチカド！</h1>
+                </a>
+                
+                <nav class="nav-desktop">
+                    <ul>
+                        <li><a href="products.html">🥦 商品を探す</a></li>
+                        <li><a href="sellers.html" class="active">🏪 出品者を見る</a></li>
+                        <li><a href="#articles">📰 特集記事</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <a href="cart.html" class="cart-icon">
+                        🛒
+                        <span class="cart-badge" id="cartBadge">0</span>
+                    </a>
+                    <a href="login.html" class="login-btn">ログイン</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- モバイルメニュー -->
+    <nav class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="products.html">🥦 商品を探す</a></li>
+            <li><a href="sellers.html">🏪 出品者を見る</a></li>
+            <li><a href="#articles">📰 特集記事</a></li>
+            <li class="divider"></li>
+            <li><a href="login.html">🔑 ログイン</a></li>
+            <li><a href="login.html">📝 新規登録</a></li>
+            <li class="divider"></li>
+            <li><a href="login.html">💼 出品者になる</a></li>
+        </ul>
+    </nav>
+
+    <!-- ページヘッダー -->
+    <div class="page-header">
+        <div class="container">
+            <h1 class="page-title">🏪 出品者を見る</h1>
+            <p class="page-description">こだわりの生産者と直接つながろう</p>
+        </div>
+    </div>
+
+    <!-- メインコンテンツ -->
+    <div class="page-content">
+        <div class="container">
+            <div class="seller-grid">
+                <!-- 出品者カード 1 -->
+                <a href="#seller-detail-1" class="seller-card">
+                    <div class="seller-cover">
+                        <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=600&h=200&fit=crop" alt="山田農園" loading="lazy">
+                    </div>
+                    <div class="seller-profile">
+                        <img src="https://i.pravatar.cc/100?img=12" alt="山田太郎" class="seller-avatar">
+                    </div>
+                    <div class="seller-info">
+                        <h3 class="seller-name">🏪 山田農園</h3>
+                        <p class="seller-location">📍 長野県 / 野菜農家</p>
+                        <p class="seller-tagline">「家族3代で育てる、こだわりの農園です」</p>
+                        <div class="seller-rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="review-count">(120件)</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 出品者カード 2 -->
+                <a href="#seller-detail-2" class="seller-card">
+                    <div class="seller-cover">
+                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&h=200&fit=crop" alt="佐藤ファーム" loading="lazy">
+                    </div>
+                    <div class="seller-profile">
+                        <img src="https://i.pravatar.cc/100?img=5" alt="佐藤花子" class="seller-avatar">
+                    </div>
+                    <div class="seller-info">
+                        <h3 class="seller-name">🏪 佐藤ファーム</h3>
+                        <p class="seller-location">📍 北海道 / 有機野菜</p>
+                        <p class="seller-tagline">「北海道の大地で育てる、安心・安全な野菜」</p>
+                        <div class="seller-rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="review-count">(203件)</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 出品者カード 3 -->
+                <a href="#seller-detail-3" class="seller-card">
+                    <div class="seller-cover">
+                        <img src="https://images.unsplash.com/photo-1611016186353-9af58c69a533?w=600&h=200&fit=crop" alt="青森果樹園" loading="lazy">
+                    </div>
+                    <div class="seller-profile">
+                        <img src="https://i.pravatar.cc/100?img=33" alt="高橋次郎" class="seller-avatar">
+                    </div>
+                    <div class="seller-info">
+                        <h3 class="seller-name">🏪 青森果樹園</h3>
+                        <p class="seller-location">📍 青森県 / 果樹農家</p>
+                        <p class="seller-tagline">「太陽の恵みをたっぷり受けた、甘いりんご」</p>
+                        <div class="seller-rating">
+                            <span class="stars">★★★★☆</span>
+                            <span class="review-count">(89件)</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 出品者カード 4 -->
+                <a href="#seller-detail-4" class="seller-card">
+                    <div class="seller-cover">
+                        <img src="https://images.unsplash.com/photo-1628088062854-d1870b4553da?w=600&h=200&fit=crop" alt="田中米店" loading="lazy">
+                    </div>
+                    <div class="seller-profile">
+                        <img src="https://i.pravatar.cc/100?img=56" alt="田中一郎" class="seller-avatar">
+                    </div>
+                    <div class="seller-info">
+                        <h3 class="seller-name">🏪 田中米店</h3>
+                        <p class="seller-location">📍 新潟県 / 米農家</p>
+                        <p class="seller-tagline">「魚沼産コシヒカリを直送します」</p>
+                        <div class="seller-rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="review-count">(167件)</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 出品者カード 5 -->
+                <a href="#seller-detail-5" class="seller-card">
+                    <div class="seller-cover">
+                        <img src="https://images.unsplash.com/photo-1506976785307-8732e854ad03?w=600&h=200&fit=crop" alt="いちご園佐々木" loading="lazy">
+                    </div>
+                    <div class="seller-profile">
+                        <img src="https://i.pravatar.cc/100?img=47" alt="佐々木美咲" class="seller-avatar">
+                    </div>
+                    <div class="seller-info">
+                        <h3 class="seller-name">🏪 いちご園佐々木</h3>
+                        <p class="seller-location">📍 栃木県 / いちご農家</p>
+                        <p class="seller-tagline">「完熟の甘さをお届けします」</p>
+                        <div class="seller-rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="review-count">(256件)</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 出品者カード 6 -->
+                <a href="#seller-detail-6" class="seller-card">
+                    <div class="seller-cover">
+                        <img src="https://images.unsplash.com/photo-1505253758473-96b7015fcd40?w=600&h=200&fit=crop" alt="高橋養鶏場" loading="lazy">
+                    </div>
+                    <div class="seller-profile">
+                        <img src="https://i.pravatar.cc/100?img=68" alt="高橋健一" class="seller-avatar">
+                    </div>
+                    <div class="seller-info">
+                        <h3 class="seller-name">🏪 高橋養鶏場</h3>
+                        <p class="seller-location">📍 千葉県 / 養鶏業</p>
+                        <p class="seller-tagline">「平飼いでストレスフリーに育てた鶏の卵」</p>
+                        <div class="seller-rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="review-count">(145件)</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">マチカド！</h3>
+                    <p class="footer-text">街角の温かいオンラインマーケット</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-heading">サービス</h4>
+                    <ul class="footer-links">
+                        <li><a href="products.html">商品を探す</a></li>
+                        <li><a href="sellers.html">出品者を見る</a></li>
+                        <li><a href="#articles">特集記事</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-heading">出品者の方へ</h4>
+                    <ul class="footer-links">
+                        <li><a href="#seller-register">出品者登録</a></li>
+                        <li><a href="#seller-guide">出品ガイド</a></li>
+                        <li><a href="#seller-faq">よくある質問</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-heading">会社情報</h4>
+                    <ul class="footer-links">
+                        <li><a href="#about">マチカドとは</a></li>
+                        <li><a href="#terms">利用規約</a></li>
+                        <li><a href="#privacy">プライバシーポリシー</a></li>
+                        <li><a href="#contact">お問い合わせ</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 マチカド！ All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/common.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

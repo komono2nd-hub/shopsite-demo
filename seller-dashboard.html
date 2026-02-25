@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>出品者ダッシュボード - マチカド！</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/seller.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <button class="hamburger" id="hamburger" aria-label="メニュー">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <a href="index.html" class="logo">
+                    <h1>マチカド！</h1>
+                </a>
+                
+                <nav class="nav-desktop">
+                    <ul>
+                        <li><a href="products.html">🥦 商品を探す</a></li>
+                        <li><a href="sellers.html">🏪 出品者を見る</a></li>
+                        <li><a href="#articles">📰 特集記事</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <a href="cart.html" class="cart-icon">
+                        🛒
+                        <span class="cart-badge" id="cartBadge">0</span>
+                    </a>
+                    <a href="login.html" class="login-btn">ログイン</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- モバイルメニュー -->
+    <nav class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="products.html">🥦 商品を探す</a></li>
+            <li><a href="sellers.html">🏪 出品者を見る</a></li>
+            <li><a href="#articles">📰 特集記事</a></li>
+            <li class="divider"></li>
+            <li><a href="login.html">🔑 ログイン</a></li>
+            <li><a href="register.html">📝 新規登録</a></li>
+        </ul>
+    </nav>
+
+    <!-- ダッシュボードヘッダー -->
+    <div class="dashboard-header">
+        <div class="container">
+            <h1 class="dashboard-title">🏪 出品者ダッシュボード</h1>
+            <p class="dashboard-subtitle" id="sellerName"></p>
+        </div>
+    </div>
+
+    <!-- メインコンテンツ -->
+    <div class="page-content">
+        <div class="container">
+            <div class="dashboard-layout">
+                <!-- サイドバー -->
+                <aside class="dashboard-sidebar">
+                    <nav class="dashboard-nav">
+                        <a href="#overview" class="dashboard-nav-item active" onclick="switchTab('overview'); return false;">
+                            📊 概要
+                        </a>
+                        <a href="#products" class="dashboard-nav-item" onclick="switchTab('products'); return false;">
+                            📦 商品管理
+                        </a>
+                        <a href="#orders" class="dashboard-nav-item" onclick="switchTab('orders'); return false;">
+                            📋 注文管理
+                        </a>
+                        <a href="#sales" class="dashboard-nav-item" onclick="switchTab('sales'); return false;">
+                            💰 売上管理
+                        </a>
+                        <a href="#shop" class="dashboard-nav-item" onclick="switchTab('shop'); return false;">
+                            🏠 ショップページ
+                        </a>
+                    </nav>
+                </aside>
+
+                <!-- メインコンテンツ -->
+                <main class="dashboard-main">
+                    <!-- 概要 -->
+                    <div class="tab-content active" id="tab-overview">
+                        <h2 class="section-title">📊 概要</h2>
+                        
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-icon">💰</div>
+                                <div class="stat-info">
+                                    <div class="stat-label">今月の売上</div>
+                                    <div class="stat-value">¥120,500</div>
+                                    <div class="stat-change positive">+15.3% 先月比</div>
+                                </div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-icon">📦</div>
+                                <div class="stat-info">
+                                    <div class="stat-label">今月の注文</div>
+                                    <div class="stat-value">38件</div>
+                                    <div class="stat-change positive">+8件 先月比</div>
+                                </div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-icon">🚚</div>
+                                <div class="stat-info">
+                                    <div class="stat-label">未発送</div>
+                                    <div class="stat-value">3件</div>
+                                    <div class="stat-change">対応待ち</div>
+                                </div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-icon">⭐</div>
+                                <div class="stat-info">
+                                    <div class="stat-label">平均評価</div>
+                                    <div class="stat-value">4.8</div>
+                                    <div class="stat-change">(120件のレビュー)</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dashboard-section">
+                            <h3 class="subsection-title">最近の注文</h3>
+                            <div class="orders-table">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>注文番号</th>
+                                            <th>商品</th>
+                                            <th>購入者</th>
+                                            <th>金額</th>
+                                            <th>ステータス</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>MC-20260225-0055</td>
+                                            <td>朝採れトマト 1kg × 1</td>
+                                            <td>鈴木花子</td>
+                                            <td>¥2,480</td>
+                                            <td><span class="status-badge pending">未発送</span></td>
+                                            <td><button class="btn btn-primary btn-small" onclick="showToast('デモ版では発送処理は利用できません')">発送済みにする</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>MC-20260224-0042</td>
+                                            <td>きゅうり500g × 2</td>
+                                            <td>田中太郎</td>
+                                            <td>¥2,100</td>
+                                            <td><span class="status-badge shipped">発送済み</span></td>
+                                            <td><button class="btn btn-outline btn-small" onclick="showToast('デモ版では詳細表示は利用できません')">詳細</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 商品管理 -->
+                    <div class="tab-content" id="tab-products">
+                        <div class="section-header">
+                            <h2 class="section-title">📦 商品管理</h2>
+                            <button class="btn btn-primary" onclick="showToast('デモ版では商品登録は利用できません')">
+                                ➕ 新しい商品を登録
+                            </button>
+                        </div>
+
+                        <div class="products-grid">
+                            <div class="product-manage-card">
+                                <img src="https://images.unsplash.com/photo-1546094096-0df4bcaaa337?w=200&h=150&fit=crop" alt="朝採れトマト">
+                                <div class="product-manage-info">
+                                    <h3 class="product-manage-name">朝採れトマト 1kg</h3>
+                                    <div class="product-manage-price">¥1,980</div>
+                                    <div class="product-manage-stock">在庫: 25個</div>
+                                    <div class="product-manage-status">
+                                        <span class="status-badge published">公開中</span>
+                                    </div>
+                                </div>
+                                <div class="product-manage-actions">
+                                    <button class="btn btn-outline btn-small" onclick="showToast('デモ版では編集機能は利用できません')">編集</button>
+                                    <button class="btn btn-outline btn-small" onclick="showToast('デモ版では削除機能は利用できません')">削除</button>
+                                </div>
+                            </div>
+
+                            <div class="product-manage-card">
+                                <img src="https://images.unsplash.com/photo-1587049352846-4a222e784643?w=200&h=150&fit=crop" alt="きゅうり">
+                                <div class="product-manage-info">
+                                    <h3 class="product-manage-name">朝採れきゅうり 500g</h3>
+                                    <div class="product-manage-price">¥800</div>
+                                    <div class="product-manage-stock">在庫: 15個</div>
+                                    <div class="product-manage-status">
+                                        <span class="status-badge published">公開中</span>
+                                    </div>
+                                </div>
+                                <div class="product-manage-actions">
+                                    <button class="btn btn-outline btn-small" onclick="showToast('デモ版では編集機能は利用できません')">編集</button>
+                                    <button class="btn btn-outline btn-small" onclick="showToast('デモ版では削除機能は利用できません')">削除</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 注文管理 -->
+                    <div class="tab-content" id="tab-orders">
+                        <h2 class="section-title">📋 注文管理</h2>
+                        
+                        <div class="filter-tabs">
+                            <button class="filter-tab active">すべて</button>
+                            <button class="filter-tab">未発送 (3)</button>
+                            <button class="filter-tab">発送済み</button>
+                            <button class="filter-tab">完了</button>
+                        </div>
+
+                        <div class="orders-list">
+                            <div class="order-manage-card">
+                                <div class="order-manage-header">
+                                    <div>
+                                        <div class="order-number">MC-20260225-0055</div>
+                                        <div class="order-date">2026年2月25日 10:30</div>
+                                    </div>
+                                    <span class="status-badge pending">未発送</span>
+                                </div>
+                                <div class="order-manage-body">
+                                    <div class="order-customer">
+                                        <strong>購入者:</strong> 鈴木花子 様<br>
+                                        <strong>配送先:</strong> 〒150-0001 東京都渋谷区...
+                                    </div>
+                                    <div class="order-items-summary">
+                                        • 朝採れトマト 1kg × 1個<br>
+                                        <strong>合計: ¥2,480</strong>
+                                    </div>
+                                </div>
+                                <div class="order-manage-actions">
+                                    <button class="btn btn-primary btn-small" onclick="showToast('デモ版では発送処理は利用できません')">発送済みにする</button>
+                                    <button class="btn btn-outline btn-small" onclick="showToast('デモ版では詳細表示は利用できません')">詳細を見る</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 売上管理 -->
+                    <div class="tab-content" id="tab-sales">
+                        <h2 class="section-title">💰 売上管理</h2>
+                        
+                        <div class="sales-summary">
+                            <div class="sales-period">
+                                <label>期間:</label>
+                                <select class="form-select">
+                                    <option>今月</option>
+                                    <option>先月</option>
+                                    <option>過去3ヶ月</option>
+                                    <option>過去6ヶ月</option>
+                                    <option>今年</option>
+                                </select>
+                            </div>
+
+                            <div class="sales-stats">
+                                <div class="sales-stat-item">
+                                    <div class="sales-stat-label">総売上</div>
+                                    <div class="sales-stat-value">¥120,500</div>
+                                </div>
+                                <div class="sales-stat-item">
+                                    <div class="sales-stat-label">手数料</div>
+                                    <div class="sales-stat-value">-¥12,050</div>
+                                </div>
+                                <div class="sales-stat-item">
+                                    <div class="sales-stat-label">送料収入</div>
+                                    <div class="sales-stat-value">+¥19,000</div>
+                                </div>
+                                <div class="sales-stat-item highlight">
+                                    <div class="sales-stat-label">振込予定額</div>
+                                    <div class="sales-stat-value">¥127,450</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dashboard-section">
+                            <h3 class="subsection-title">売上推移（デモ）</h3>
+                            <div class="chart-placeholder">
+                                <div style="text-align: center; padding: 4rem; color: var(--color-text-light);">
+                                    📊 実際の実装ではChart.jsなどで<br>グラフを表示します
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ショップページ -->
+                    <div class="tab-content" id="tab-shop">
+                        <h2 class="section-title">🏠 ショップページ編集</h2>
+                        
+                        <div class="shop-edit-section">
+                            <h3 class="subsection-title">基本情報</h3>
+                            <div class="form-group">
+                                <label class="form-label">ショップ名</label>
+                                <input type="text" class="form-input" id="shopName" placeholder="山田農園">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">キャッチコピー</label>
+                                <input type="text" class="form-input" placeholder="家族3代で育てる、こだわりの農園です">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">ショップ紹介</label>
+                                <textarea class="form-textarea" rows="6" placeholder="ショップの紹介文を入力してください"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="shop-edit-section">
+                            <h3 class="subsection-title">画像設定</h3>
+                            <div class="form-group">
+                                <label class="form-label">カバー画像</label>
+                                <div class="image-upload-area">
+                                    <div class="image-upload-placeholder">
+                                        📷 クリックして画像をアップロード<br>
+                                        <span style="font-size: 0.875rem; opacity: 0.7;">推奨サイズ: 1200×400px</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">プロフィール画像</label>
+                                <div class="image-upload-area small">
+                                    <div class="image-upload-placeholder">
+                                        📷 クリックして画像をアップロード<br>
+                                        <span style="font-size: 0.875rem; opacity: 0.7;">推奨サイズ: 400×400px</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary btn-large" onclick="showToast('デモ版では保存機能は利用できません')">変更を保存</button>
+                        <a href="seller-detail.html?id=1" class="btn btn-outline btn-large" style="margin-left: 1rem;">プレビューを見る</a>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">マチカド！</h3>
+                    <p class="footer-text">街角の温かいオンラインマーケット</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-heading">サービス</h4>
+                    <ul class="footer-links">
+                        <li><a href="products.html">商品を探す</a></li>
+                        <li><a href="sellers.html">出品者を見る</a></li>
+                        <li><a href="#articles">特集記事</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-heading">出品者の方へ</h4>
+                    <ul class="footer-links">
+                        <li><a href="#seller-register">出品者登録</a></li>
+                        <li><a href="#seller-guide">出品ガイド</a></li>
+                        <li><a href="#seller-faq">よくある質問</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-heading">会社情報</h4>
+                    <ul class="footer-links">
+                        <li><a href="#about">マチカドとは</a></li>
+                        <li><a href="#terms">利用規約</a></li>
+                        <li><a href="#privacy">プライバシーポリシー</a></li>
+                        <li><a href="#contact">お問い合わせ</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 マチカド！ All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/common.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        // 出品者権限チェック
+        if (!auth.requireRole('seller')) {
+            // リダイレクト処理は requireRole 内で実行される
+        }
+
+        // 出品者情報を表示
+        const user = auth.getUser();
+        if (user) {
+            document.getElementById('sellerName').textContent = user.businessName || user.name;
+            if (document.getElementById('shopName')) {
+                document.getElementById('shopName').value = user.businessName || user.name;
+            }
+        }
+
+        // タブ切り替え
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.dashboard-nav-item').forEach(nav => {
+                nav.classList.remove('active');
+            });
+            
+            document.getElementById('tab-' + tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

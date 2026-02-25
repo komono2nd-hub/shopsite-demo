@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品一覧 - マチカド！</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/products.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <button class="hamburger" id="hamburger" aria-label="メニュー">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <a href="index.html" class="logo">
+                    <h1>マチカド！</h1>
+                </a>
+                
+                <nav class="nav-desktop">
+                    <ul>
+                        <li><a href="products.html" class="active">🥦 商品を探す</a></li>
+                        <li><a href="sellers.html">🏪 出品者を見る</a></li>
+                        <li><a href="#articles">📰 特集記事</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <a href="cart.html" class="cart-icon">
+                        🛒
+                        <span class="cart-badge" id="cartBadge">0</span>
+                    </a>
+                    <a href="login.html" class="login-btn">ログイン</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- モバイルメニュー -->
+    <nav class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="products.html">🥦 商品を探す</a></li>
+            <li><a href="sellers.html">🏪 出品者を見る</a></li>
+            <li><a href="#articles">📰 特集記事</a></li>
+            <li class="divider"></li>
+            <li><a href="login.html">🔑 ログイン</a></li>
+            <li><a href="login.html">📝 新規登録</a></li>
+            <li class="divider"></li>
+            <li><a href="login.html">💼 出品者になる</a></li>
+        </ul>
+    </nav>
+
+    <!-- ページヘッダー -->
+    <div class="page-header">
+        <div class="container">
+            <h1 class="page-title">🍎 商品を探す</h1>
+            <p class="page-description">新鮮な食材を生産者から直接お届け</p>
+        </div>
+    </div>
+
+    <!-- メインコンテンツ -->
+    <div class="page-content">
+        <div class="container">
+            <div class="content-layout">
+                <!-- サイドバー（絞り込み） -->
+                <aside class="sidebar">
+                    <div class="filter-section">
+                        <h3 class="filter-title">カテゴリ</h3>
+                        <div class="filter-list">
+                            <label class="filter-item">
+                                <input type="checkbox" name="category" value="vegetables">
+                                <span>野菜・野菜セット</span>
+                            </label>
+                            <label class="filter-item">
+                                <input type="checkbox" name="category" value="fruits">
+                                <span>果物</span>
+                            </label>
+                            <label class="filter-item">
+                                <input type="checkbox" name="category" value="meat">
+                                <span>肉</span>
+                            </label>
+                            <label class="filter-item">
+                                <input type="checkbox" name="category" value="fish">
+                                <span>魚介類</span>
+                            </label>
+                            <label class="filter-item">
+                                <input type="checkbox" name="category" value="dairy">
+                                <span>卵・乳製品</span>
+                            </label>
+                            <label class="filter-item">
+                                <input type="checkbox" name="category" value="rice">
+                                <span>米・穀類</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h3 class="filter-title">エリア</h3>
+                        <div class="filter-list">
+                            <label class="filter-item">
+                                <input type="checkbox" name="area" value="hokkaido">
+                                <span>北海道</span>
+                            </label>
+                            <label class="filter-item">
+                                <input type="checkbox" name="area" value="tohoku">
+                                <span>東北</span>
+                            </label>
+                            <label class="filter-item">
+                                <input type="checkbox" name="area" value="kanto">
+                                <span>関東</span>
+                            </label>
+                            <label class="filter-item">
+                                <input type="checkbox" name="area" value="chubu">
+                                <span>中部</span>
+                            </label>
+                            <label class="filter-item">
+                                <input type="checkbox" name="area" value="kansai">
+                                <span>関西</span>
+                            </label>
+                            <label class="filter-item">
+                                <input type="checkbox" name="area" value="kyushu">
+                                <span>九州</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h3 class="filter-title">価格帯</h3>
+                        <div class="price-range">
+                            <input type="number" placeholder="最低価格" min="0" class="price-input">
+                            <span>〜</span>
+                            <input type="number" placeholder="最高価格" min="0" class="price-input">
+                        </div>
+                        <button class="btn btn-outline btn-small" style="width: 100%; margin-top: 12px;">絞り込む</button>
+                    </div>
+
+                    <button class="btn btn-outline" style="width: 100%; margin-top: 24px;" onclick="resetFilters()">
+                        リセット
+                    </button>
+                </aside>
+
+                <!-- 商品一覧 -->
+                <main class="main-content">
+                    <div class="products-header">
+                        <div class="products-count">
+                            <span class="count-number">24</span> 件の商品
+                        </div>
+                        <div class="products-sort">
+                            <label for="sort">並び替え:</label>
+                            <select id="sort" class="sort-select">
+                                <option value="popular">人気順</option>
+                                <option value="newest">新着順</option>
+                                <option value="price-low">価格が安い順</option>
+                                <option value="price-high">価格が高い順</option>
+                                <option value="rating">評価が高い順</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="product-grid">
+                        <!-- 商品カード（繰り返し） -->
+                        <a href="product-detail.html?id=1" class="product-card">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1546094096-0df4bcaaa337?w=400&h=300&fit=crop" alt="朝採れトマト" loading="lazy">
+                                <span class="product-badge">人気</span>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">朝採れトマト 1kg</h3>
+                                <p class="product-seller">🏪 山田農園</p>
+                                <p class="product-location">📍 長野県</p>
+                                <div class="product-rating">
+                                    <span class="stars">★★★★☆</span>
+                                    <span class="review-count">(45)</span>
+                                </div>
+                                <div class="product-footer">
+                                    <span class="product-price">¥1,980</span>
+                                    <button class="btn btn-cart btn-small" onclick="addToCart(event, 1)">カートへ</button>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="product-detail.html?id=2" class="product-card">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1610348725531-843dff563e2c?w=400&h=300&fit=crop" alt="有機野菜セット" loading="lazy">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">季節の有機野菜セット</h3>
+                                <p class="product-seller">🏪 佐藤ファーム</p>
+                                <p class="product-location">📍 北海道</p>
+                                <div class="product-rating">
+                                    <span class="stars">★★★★★</span>
+                                    <span class="review-count">(128)</span>
+                                </div>
+                                <div class="product-footer">
+                                    <span class="product-price">¥2,800</span>
+                                    <button class="btn btn-cart btn-small" onclick="addToCart(event, 2)">カートへ</button>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="product-detail.html?id=3" class="product-card">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=400&h=300&fit=crop" alt="りんご" loading="lazy">
+                                <span class="product-badge sale">セール</span>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">蜜入りりんご 2kg</h3>
+                                <p class="product-seller">🏪 青森果樹園</p>
+                                <p class="product-location">📍 青森県</p>
+                                <div class="product-rating">
+                                    <span class="stars">★★★★★</span>
+                                    <span class="review-count">(89)</span>
+                                </div>
+                                <div class="product-footer">
+                                    <span class="product-price">
+                                        <span class="price-original">¥3,500</span>
+                                        <span class="price-sale">¥2,980</span>
+                                    </span>
+                                    <button class="btn btn-cart btn-small" onclick="addToCart(event, 3)">カートへ</button>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="product-detail.html?id=4" class="product-card">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1628088062854-d1870b4553da?w=400&h=300&fit=crop" alt="米" loading="lazy">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">新米コシヒカリ 5kg</h3>
+                                <p class="product-seller">🏪 田中米店</p>
+                                <p class="product-location">📍 新潟県</p>
+                                <div class="product-rating">
+                                    <span class="stars">★★★★☆</span>
+                                    <span class="review-count">(67)</span>
+                                </div>
+                                <div class="product-footer">
+                                    <span class="product-price">¥3,200</span>
+                                    <button class="btn btn-cart btn-small" onclick="addToCart(event, 4)">カートへ</button>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="product-detail.html?id=5" class="product-card">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1587049352846-4a222e784643?w=400&h=300&fit=crop" alt="きゅうり" loading="lazy">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">朝採れきゅうり 500g</h3>
+                                <p class="product-seller">🏪 山田農園</p>
+                                <p class="product-location">📍 長野県</p>
+                                <div class="product-rating">
+                                    <span class="stars">★★★★☆</span>
+                                    <span class="review-count">(32)</span>
+                                </div>
+                                <div class="product-footer">
+                                    <span class="product-price">¥800</span>
+                                    <button class="btn btn-cart btn-small" onclick="addToCart(event, 5)">カートへ</button>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="product-detail.html?id=6" class="product-card">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1506976785307-8732e854ad03?w=400&h=300&fit=crop" alt="いちご" loading="lazy">
+                                <span class="product-badge">人気</span>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">甘熟いちご 300g</h3>
+                                <p class="product-seller">🏪 いちご園佐々木</p>
+                                <p class="product-location">📍 栃木県</p>
+                                <div class="product-rating">
+                                    <span class="stars">★★★★★</span>
+                                    <span class="review-count">(156)</span>
+                                </div>
+                                <div class="product-footer">
+                                    <span class="product-price">¥1,500</span>
+                                    <button class="btn btn-cart btn-small" onclick="addToCart(event, 6)">カートへ</button>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="product-detail.html?id=7" class="product-card">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1505253758473-96b7015fcd40?w=400&h=300&fit=crop" alt="卵" loading="lazy">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">平飼い有精卵 10個</h3>
+                                <p class="product-seller">🏪 高橋養鶏場</p>
+                                <p class="product-location">📍 千葉県</p>
+                                <div class="product-rating">
+                                    <span class="stars">★★★★★</span>
+                                    <span class="review-count">(98)</span>
+                                </div>
+                                <div class="product-footer">
+                                    <span class="product-price">¥680</span>
+                                    <button class="btn btn-cart btn-small" onclick="addToCart(event, 7)">カートへ</button>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="product-detail.html?id=8" class="product-card">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=400&h=300&fit=crop" alt="じゃがいも" loading="lazy">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">北海道産じゃがいも 3kg</h3>
+                                <p class="product-seller">🏪 佐藤ファーム</p>
+                                <p class="product-location">📍 北海道</p>
+                                <div class="product-rating">
+                                    <span class="stars">★★★★☆</span>
+                                    <span class="review-count">(74)</span>
+                                </div>
+                                <div class="product-footer">
+                                    <span class="product-price">¥1,200</span>
+                                    <button class="btn btn-cart btn-small" onclick="addToCart(event, 8)">カートへ</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- ページネーション -->
+                    <div class="pagination">
+                        <button class="page-btn" disabled>← 前へ</button>
+                        <div class="page-numbers">
+                            <button class="page-number active">1</button>
+                            <button class="page-number">2</button>
+                            <button class="page-number">3</button>
+                            <span class="page-dots">...</span>
+                            <button class="page-number">10</button>
+                        </div>
+                        <button class="page-btn">次へ →</button>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">マチカド！</h3>
+                    <p class="footer-text">街角の温かいオンラインマーケット</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-heading">サービス</h4>
+                    <ul class="footer-links">
+                        <li><a href="products.html">商品を探す</a></li>
+                        <li><a href="sellers.html">出品者を見る</a></li>
+                        <li><a href="#articles">特集記事</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-heading">出品者の方へ</h4>
+                    <ul class="footer-links">
+                        <li><a href="#seller-register">出品者登録</a></li>
+                        <li><a href="#seller-guide">出品ガイド</a></li>
+                        <li><a href="#seller-faq">よくある質問</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-heading">会社情報</h4>
+                    <ul class="footer-links">
+                        <li><a href="#about">マチカドとは</a></li>
+                        <li><a href="#terms">利用規約</a></li>
+                        <li><a href="#privacy">プライバシーポリシー</a></li>
+                        <li><a href="#contact">お問い合わせ</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 マチカド！ All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/common.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        function resetFilters() {
+            document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+            document.querySelectorAll('.price-input').forEach(input => input.value = '');
+            showToast('フィルターをリセットしました');
+        }
+    </script>
+</body>
+</html>

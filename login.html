@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ログイン - マチカド！</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ヘッダー（簡易版） -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <h1>マチカド！</h1>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ログインページ -->
+    <div class="auth-page">
+        <div class="auth-container">
+            <div class="auth-header">
+                <div class="auth-logo">マチカド！</div>
+                <p class="auth-subtitle">おかえりなさい</p>
+            </div>
+
+            <div class="form-error" id="loginError"></div>
+
+            <form class="auth-form" id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label class="form-label" for="email">
+                        メールアドレス <span>*</span>
+                    </label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        class="form-input" 
+                        placeholder="example@machikado.com"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="password">
+                        パスワード <span>*</span>
+                    </label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        class="form-input" 
+                        placeholder="••••••••"
+                        required
+                    >
+                </div>
+
+                <div class="form-checkbox-group">
+                    <input type="checkbox" id="remember" class="form-checkbox">
+                    <label for="remember" class="form-checkbox-label">ログイン状態を保持する</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-large form-submit">
+                    ログイン
+                </button>
+            </form>
+
+            <div class="auth-divider">
+                <span>または</span>
+            </div>
+
+            <div class="social-login">
+                <button class="btn-social btn-google" onclick="showToast('デモ版ではGoogle認証は利用できません')">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M19.6 10.23c0-.82-.1-1.42-.25-2.05H10v3.72h5.5c-.15.96-.74 2.31-2.04 3.22v2.45h3.16c1.89-1.73 2.98-4.3 2.98-7.34z"/>
+                        <path d="M13.46 15.13c-.83.59-1.96 1-3.46 1-2.64 0-4.88-1.74-5.68-4.15H1.07v2.52C2.72 17.75 6.09 20 10 20c2.7 0 4.96-.89 6.62-2.42l-3.16-2.45z"/>
+                        <path d="M3.99 10c0-.69.12-1.35.32-1.97V5.51H1.07A9.973 9.973 0 000 10c0 1.61.39 3.14 1.07 4.49l3.24-2.52c-.2-.62-.32-1.28-.32-1.97z"/>
+                        <path d="M10 3.88c1.88 0 3.13.81 3.85 1.48l2.84-2.76C14.96.99 12.7 0 10 0 6.09 0 2.72 2.25 1.07 5.51l3.24 2.52C5.12 5.62 7.36 3.88 10 3.88z"/>
+                    </svg>
+                    Googleでログイン
+                </button>
+
+                <button class="btn-social btn-line" onclick="showToast('デモ版ではLINE認証は利用できません')">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+                    </svg>
+                    LINEでログイン
+                </button>
+            </div>
+
+            <!-- デモ用クイックログイン -->
+            <div class="demo-login-section">
+                <div class="demo-login-title">🎮 デモ用クイックログイン</div>
+                <div class="demo-login-buttons">
+                    <button class="btn btn-demo" onclick="quickLogin('buyer')">
+                        👤 購入者としてログイン
+                        <br><span style="font-size: 0.75rem; opacity: 0.7;">buyer@example.com / password</span>
+                    </button>
+                    <button class="btn btn-demo" onclick="quickLogin('seller')">
+                        🏪 出品者としてログイン
+                        <br><span style="font-size: 0.75rem; opacity: 0.7;">seller@example.com / password</span>
+                    </button>
+                    <button class="btn btn-demo" onclick="quickLogin('both')">
+                        🔄 両方の権限でログイン
+                        <br><span style="font-size: 0.75rem; opacity: 0.7;">both@example.com / password</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="auth-footer">
+                <p style="font-size: 0.875rem; color: var(--color-text-light);">
+                    アカウントをお持ちでない方は<br>
+                    <a href="register.html" class="auth-link">新規登録</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        console.log('🔍 login.html スクリプト読み込み完了');
+        console.log('auth オブジェクト:', typeof auth);
+        console.log('Auth クラス:', typeof Auth);
+
+        function handleLogin(event) {
+            console.log('🔐 handleLogin 関数が呼ばれました');
+            event.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('loginError');
+            
+            console.log('入力値 - Email:', email, 'Password:', password ? '入力あり' : '入力なし');
+            
+            if (!auth) {
+                console.error('❌ auth オブジェクトが存在しません');
+                alert('エラー: 認証システムが読み込まれていません');
+                return;
+            }
+            
+            const result = auth.login(email, password);
+            console.log('ログイン結果:', result);
+            
+            if (result.success) {
+                console.log('✅ ログイン成功!');
+                showToast('ログインしました');
+                
+                // ログイン後のリダイレクト先を決定
+                const redirectUrl = new URLSearchParams(window.location.search).get('redirect') || 'index.html';
+                console.log('リダイレクト先:', redirectUrl);
+                
+                setTimeout(() => {
+                    window.location.href = redirectUrl;
+                }, 1000);
+            } else {
+                console.log('❌ ログイン失敗:', result.error);
+                errorDiv.textContent = result.error;
+                errorDiv.classList.add('show');
+                
+                setTimeout(() => {
+                    errorDiv.classList.remove('show');
+                }, 5000);
+            }
+        }
+
+        // 既にログイン済みの場合はリダイレクト
+        if (auth && auth.isLoggedIn()) {
+            console.log('✅ 既にログイン済み - リダイレクトします');
+            window.location.href = 'index.html';
+        } else {
+            console.log('📝 ログイン待機中...');
+        }
+        
+        // フォーム送信イベントを確実に捕捉
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginForm');
+            if (loginForm) {
+                console.log('✅ ログインフォームが見つかりました');
+                loginForm.addEventListener('submit', handleLogin);
+            } else {
+                console.error('❌ ログインフォームが見つかりません');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>マイページ - マチカド！</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/mypage.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <button class="hamburger" id="hamburger" aria-label="メニュー">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <a href="index.html" class="logo">
+                    <h1>マチカド！</h1>
+                </a>
+                
+                <nav class="nav-desktop">
+                    <ul>
+                        <li><a href="products.html">🥦 商品を探す</a></li>
+                        <li><a href="sellers.html">🏪 出品者を見る</a></li>
+                        <li><a href="#articles">📰 特集記事</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <a href="cart.html" class="cart-icon">
+                        🛒
+                        <span class="cart-badge" id="cartBadge">0</span>
+                    </a>
+                    <a href="login.html" class="login-btn">ログイン</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- モバイルメニュー -->
+    <nav class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="products.html">🥦 商品を探す</a></li>
+            <li><a href="sellers.html">🏪 出品者を見る</a></li>
+            <li><a href="#articles">📰 特集記事</a></li>
+            <li class="divider"></li>
+            <li><a href="login.html">🔑 ログイン</a></li>
+            <li><a href="register.html">📝 新規登録</a></li>
+            <li class="divider"></li>
+            <li><a href="#seller-register">💼 出品者になる</a></li>
+        </ul>
+    </nav>
+
+    <!-- ページヘッダー -->
+    <div class="page-header">
+        <div class="container">
+            <h1 class="page-title">📱 マイページ</h1>
+        </div>
+    </div>
+
+    <!-- メインコンテンツ -->
+    <div class="page-content">
+        <div class="container">
+            <div class="mypage-layout">
+                <!-- サイドバー -->
+                <aside class="mypage-sidebar">
+                    <div class="mypage-user-card">
+                        <img src="" alt="" id="userAvatar" class="user-avatar">
+                        <div class="user-info">
+                            <div class="user-name" id="userName"></div>
+                            <div class="user-email" id="userEmail"></div>
+                        </div>
+                    </div>
+
+                    <nav class="mypage-nav">
+                        <a href="#orders" class="mypage-nav-item active" onclick="switchTab('orders'); return false;">
+                            📋 注文履歴
+                        </a>
+                        <a href="#favorites" class="mypage-nav-item" onclick="switchTab('favorites'); return false;">
+                            ❤️ お気に入り
+                        </a>
+                        <a href="#addresses" class="mypage-nav-item" onclick="switchTab('addresses'); return false;">
+                            📬 配送先管理
+                        </a>
+                        <a href="#settings" class="mypage-nav-item" onclick="switchTab('settings'); return false;">
+                            ⚙️ アカウント設定
+                        </a>
+                    </nav>
+                </aside>
+
+                <!-- メインコンテンツ -->
+                <main class="mypage-main">
+                    <!-- 注文履歴 -->
+                    <div class="tab-content active" id="tab-orders">
+                        <h2 class="section-title">注文履歴</h2>
+                        
+                        <div class="orders-list">
+                            <!-- デモ注文 1 -->
+                            <div class="order-card">
+                                <div class="order-header">
+                                    <div>
+                                        <div class="order-number">注文番号: MC-20260220-0042</div>
+                                        <div class="order-date">2026年2月20日</div>
+                                    </div>
+                                    <span class="order-status delivered">配達完了</span>
+                                </div>
+                                <div class="order-body">
+                                    <div class="order-seller">🏪 山田農園</div>
+                                    <div class="order-items">
+                                        <div class="order-item">
+                                            <img src="https://images.unsplash.com/photo-1546094096-0df4bcaaa337?w=60&h=60&fit=crop" alt="朝採れトマト">
+                                            <div class="order-item-info">
+                                                <div class="order-item-name">朝採れトマト 1kg</div>
+                                                <div class="order-item-price">¥1,980 × 1個</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="order-total">合計: ¥2,480（送料込）</div>
+                                </div>
+                                <div class="order-actions">
+                                    <button class="btn btn-outline btn-small" onclick="showToast('デモ版では詳細表示は利用できません')">詳細を見る</button>
+                                    <button class="btn btn-primary btn-small" onclick="showToast('デモ版ではレビュー機能は利用できません')">レビューを書く</button>
+                                </div>
+                            </div>
+
+                            <!-- デモ注文 2 -->
+                            <div class="order-card">
+                                <div class="order-header">
+                                    <div>
+                                        <div class="order-number">注文番号: MC-20260215-0031</div>
+                                        <div class="order-date">2026年2月15日</div>
+                                    </div>
+                                    <span class="order-status delivered">配達完了</span>
+                                </div>
+                                <div class="order-body">
+                                    <div class="order-seller">🏪 佐藤ファーム</div>
+                                    <div class="order-items">
+                                        <div class="order-item">
+                                            <img src="https://images.unsplash.com/photo-1610348725531-843dff563e2c?w=60&h=60&fit=crop" alt="有機野菜セット">
+                                            <div class="order-item-info">
+                                                <div class="order-item-name">季節の有機野菜セット</div>
+                                                <div class="order-item-price">¥2,800 × 1個</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="order-total">合計: ¥3,400（送料込）</div>
+                                </div>
+                                <div class="order-actions">
+                                    <button class="btn btn-outline btn-small" onclick="showToast('デモ版では詳細表示は利用できません')">詳細を見る</button>
+                                    <button class="btn btn-outline btn-small" onclick="showToast('デモ版では再注文機能は利用できません')">再注文する</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- お気に入り -->
+                    <div class="tab-content" id="tab-favorites">
+                        <h2 class="section-title">お気に入り</h2>
+                        
+                        <div class="favorites-grid">
+                            <a href="product-detail.html?id=1" class="product-card">
+                                <div class="product-image">
+                                    <img src="https://images.unsplash.com/photo-1546094096-0df4bcaaa337?w=400&h=300&fit=crop" alt="朝採れトマト">
+                                    <button class="favorite-btn active" onclick="event.preventDefault(); toggleFavorite(1)">❤️</button>
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-name">朝採れトマト 1kg</h3>
+                                    <p class="product-seller">🏪 山田農園</p>
+                                    <div class="product-footer">
+                                        <span class="product-price">¥1,980</span>
+                                        <button class="btn btn-cart btn-small" onclick="addToCart(event, 1)">カートへ</button>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a href="product-detail.html?id=3" class="product-card">
+                                <div class="product-image">
+                                    <img src="https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=400&h=300&fit=crop" alt="りんご">
+                                    <button class="favorite-btn active" onclick="event.preventDefault(); toggleFavorite(3)">❤️</button>
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-name">蜜入りりんご 2kg</h3>
+                                    <p class="product-seller">🏪 青森果樹園</p>
+                                    <div class="product-footer">
+                                        <span class="product-price">¥2,980</span>
+                                        <button class="btn btn-cart btn-small" onclick="addToCart(event, 3)">カートへ</button>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 配送先管理 -->
+                    <div class="tab-content" id="tab-addresses">
+                        <h2 class="section-title">配送先管理</h2>
+                        
+                        <button class="btn btn-primary" onclick="showToast('デモ版では配送先追加は利用できません')" style="margin-bottom: 1.5rem;">
+                            ➕ 新しい配送先を追加
+                        </button>
+
+                        <div class="addresses-list">
+                            <div class="address-card">
+                                <div class="address-header">
+                                    <span class="address-default">デフォルト</span>
+                                </div>
+                                <div class="address-body">
+                                    <div class="address-name">山田太郎</div>
+                                    <div class="address-detail">
+                                        〒150-0001<br>
+                                        東京都渋谷区神宮前1-2-3<br>
+                                        マンション名 101号室
+                                    </div>
+                                    <div class="address-phone">📞 090-1234-5678</div>
+                                </div>
+                                <div class="address-actions">
+                                    <button class="btn btn-outline btn-small" onclick="showToast('デモ版では編集機能は利用できません')">編集</button>
+                                    <button class="btn btn-outline btn-small" onclick="showToast('デモ版では削除機能は利用できません')">削除</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- アカウント設定 -->
+                    <div class="tab-content" id="tab-settings">
+                        <h2 class="section-title">アカウント設定</h2>
+                        
+                        <div class="settings-section">
+                            <h3 class="settings-subtitle">基本情報</h3>
+                            <div class="settings-form">
+                                <div class="form-group">
+                                    <label class="form-label">お名前</label>
+                                    <input type="text" class="form-input" id="settingName" placeholder="山田太郎">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">メールアドレス</label>
+                                    <input type="email" class="form-input" id="settingEmail" placeholder="example@machikado.com">
+                                </div>
+                                <button class="btn btn-primary" onclick="showToast('デモ版では設定変更は利用できません')">変更を保存</button>
+                            </div>
+                        </div>
+
+                        <div class="settings-section">
+                            <h3 class="settings-subtitle">パスワード変更</h3>
+                            <div class="settings-form">
+                                <div class="form-group">
+                                    <label class="form-label">現在のパスワード</label>
+                                    <input type="password" class="form-input" placeholder="••••••••">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">新しいパスワード</label>
+                                    <input type="password" class="form-input" placeholder="••••••••">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">新しいパスワード（確認）</label>
+                                    <input type="password" class="form-input" placeholder="••••••••">
+                                </div>
+                                <button class="btn btn-primary" onclick="showToast('デモ版ではパスワード変更は利用できません')">パスワードを変更</button>
+                            </div>
+                        </div>
+
+                        <div class="settings-section">
+                            <h3 class="settings-subtitle">通知設定</h3>
+                            <div class="settings-form">
+                                <div class="form-checkbox-group">
+                                    <input type="checkbox" id="notifyOrder" class="form-checkbox" checked>
+                                    <label for="notifyOrder" class="form-checkbox-label">注文確認メール</label>
+                                </div>
+                                <div class="form-checkbox-group">
+                                    <input type="checkbox" id="notifyShipping" class="form-checkbox" checked>
+                                    <label for="notifyShipping" class="form-checkbox-label">発送通知メール</label>
+                                </div>
+                                <div class="form-checkbox-group">
+                                    <input type="checkbox" id="notifyPromotion" class="form-checkbox">
+                                    <label for="notifyPromotion" class="form-checkbox-label">キャンペーン情報メール</label>
+                                </div>
+                                <button class="btn btn-primary" onclick="showToast('デモ版では設定変更は利用できません')">変更を保存</button>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">マチカド！</h3>
+                    <p class="footer-text">街角の温かいオンラインマーケット</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-heading">サービス</h4>
+                    <ul class="footer-links">
+                        <li><a href="products.html">商品を探す</a></li>
+                        <li><a href="sellers.html">出品者を見る</a></li>
+                        <li><a href="#articles">特集記事</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-heading">出品者の方へ</h4>
+                    <ul class="footer-links">
+                        <li><a href="#seller-register">出品者登録</a></li>
+                        <li><a href="#seller-guide">出品ガイド</a></li>
+                        <li><a href="#seller-faq">よくある質問</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-heading">会社情報</h4>
+                    <ul class="footer-links">
+                        <li><a href="#about">マチカドとは</a></li>
+                        <li><a href="#terms">利用規約</a></li>
+                        <li><a href="#privacy">プライバシーポリシー</a></li>
+                        <li><a href="#contact">お問い合わせ</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 マチカド！ All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/common.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        // 認証チェック
+        if (!auth.requireAuth()) {
+            // ログインページにリダイレクト
+        }
+
+        // ユーザー情報を表示
+        const user = auth.getUser();
+        if (user) {
+            document.getElementById('userName').textContent = user.name;
+            document.getElementById('userEmail').textContent = user.email;
+            document.getElementById('userAvatar').src = user.avatar;
+            document.getElementById('settingName').value = user.name;
+            document.getElementById('settingEmail').value = user.email;
+        }
+
+        // タブ切り替え
+        function switchTab(tabName) {
+            // すべてのタブコンテンツを非表示
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // すべてのナビアイテムの active を削除
+            document.querySelectorAll('.mypage-nav-item').forEach(nav => {
+                nav.classList.remove('active');
+            });
+            
+            // 選択されたタブを表示
+            document.getElementById('tab-' + tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // お気に入りトグル
+        function toggleFavorite(productId) {
+            showToast('お気に入りから削除しました');
+        }
+    </script>
+</body>
+</html>

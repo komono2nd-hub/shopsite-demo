@@ -1,0 +1,349 @@
+/* =====================================
+   認証関連スタイル
+   ===================================== */
+
+/* ユーザーメニュードロップダウン */
+.user-menu-dropdown {
+    position: fixed;
+    /* top と right は JavaScript で動的に設定 */
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    min-width: 280px;
+    z-index: 1000;
+    animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.user-menu-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+}
+
+.user-menu-header img {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-full);
+    object-fit: cover;
+}
+
+.user-menu-name {
+    font-weight: 600;
+    font-size: var(--font-size-base);
+}
+
+.user-menu-email {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-light);
+}
+
+.user-menu-divider {
+    height: 1px;
+    background: var(--color-border-light);
+    margin: 0 var(--spacing-md);
+}
+
+.user-menu-item {
+    display: block;
+    padding: var(--spacing-md) var(--spacing-lg);
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+    transition: background-color var(--transition-fast);
+}
+
+.user-menu-item:hover {
+    background-color: var(--color-surface-alt);
+}
+
+/* ログイン・登録フォーム */
+.auth-page {
+    min-height: calc(100vh - 64px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-xl) var(--spacing-md);
+    background: linear-gradient(135deg, var(--color-surface-alt) 0%, var(--color-background) 100%);
+}
+
+.auth-container {
+    background: var(--color-surface);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    padding: var(--spacing-2xl);
+    width: 100%;
+    max-width: 450px;
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.auth-logo {
+    font-family: var(--font-serif);
+    font-size: var(--font-size-3xl);
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.auth-subtitle {
+    color: var(--color-text-light);
+    font-size: var(--font-size-base);
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.form-label {
+    font-weight: 500;
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+}
+
+.form-label span {
+    color: var(--color-error);
+    margin-left: 2px;
+}
+
+.form-input,
+.form-select {
+    padding: var(--spacing-md);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    font-family: inherit;
+    transition: border-color var(--transition-fast);
+}
+
+.form-input:focus,
+.form-select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(212, 98, 42, 0.1);
+}
+
+.form-input::placeholder {
+    color: var(--color-text-lighter);
+}
+
+.form-checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.form-checkbox {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.form-checkbox-label {
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+    cursor: pointer;
+}
+
+.form-submit {
+    margin-top: var(--spacing-md);
+}
+
+.auth-divider {
+    text-align: center;
+    margin: var(--spacing-xl) 0;
+    position: relative;
+}
+
+.auth-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--color-border-light);
+}
+
+.auth-divider span {
+    position: relative;
+    background: var(--color-surface);
+    padding: 0 var(--spacing-md);
+    color: var(--color-text-light);
+    font-size: var(--font-size-sm);
+}
+
+.social-login {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.btn-social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    font-weight: 500;
+    transition: all var(--transition-fast);
+}
+
+.btn-social:hover {
+    background: var(--color-surface-alt);
+    border-color: var(--color-primary);
+}
+
+.btn-google {
+    color: #4285F4;
+}
+
+.btn-line {
+    color: #00B900;
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--color-border-light);
+}
+
+.auth-link {
+    color: var(--color-primary);
+    font-weight: 500;
+    transition: color var(--transition-fast);
+}
+
+.auth-link:hover {
+    color: var(--color-primary-dark);
+}
+
+/* デモログインボタン */
+.demo-login-section {
+    margin-top: var(--spacing-xl);
+    padding: var(--spacing-lg);
+    background: var(--color-surface-alt);
+    border-radius: var(--radius-md);
+}
+
+.demo-login-title {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-md);
+    text-align: center;
+}
+
+.demo-login-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.btn-demo {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-sm);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+}
+
+.btn-demo:hover {
+    background: var(--color-primary-light);
+    color: var(--color-surface);
+    border-color: var(--color-primary);
+}
+
+/* エラーメッセージ */
+.form-error {
+    background: #FEE;
+    color: var(--color-error);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-md);
+    display: none;
+}
+
+.form-error.show {
+    display: block;
+}
+
+/* 役割選択カード */
+.role-selection {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.role-card {
+    padding: var(--spacing-lg);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.role-card:hover {
+    border-color: var(--color-primary-light);
+    background: var(--color-surface-alt);
+}
+
+.role-card.active {
+    border-color: var(--color-primary);
+    background: rgba(212, 98, 42, 0.05);
+}
+
+.role-card-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.role-card-title {
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+}
+
+.role-card-description {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-light);
+}
+
+/* レスポンシブ */
+@media (max-width: 640px) {
+    .auth-container {
+        padding: var(--spacing-xl);
+    }
+    
+    .role-selection {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>デバッグチェック - マチカド！</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .check-item {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #ccc;
+        }
+        .check-item.success {
+            border-left-color: #4CAF50;
+        }
+        .check-item.error {
+            border-left-color: #f44336;
+        }
+        .status {
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .success .status {
+            color: #4CAF50;
+        }
+        .error .status {
+            color: #f44336;
+        }
+        button {
+            background: #D4622A;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #B84E1F;
+        }
+        #results {
+            margin-top: 20px;
+        }
+        pre {
+            background: #333;
+            color: #0f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 マチカド！デバッグチェック</h1>
+    <p>このページで、ファイルが正しく読み込まれているか確認できます。</p>
+
+    <div id="results">
+        <div class="check-item" id="check-common">
+            📄 common.js の読み込み: <span class="status">チェック中...</span>
+        </div>
+        <div class="check-item" id="check-auth">
+            🔐 auth.js の読み込み: <span class="status">チェック中...</span>
+        </div>
+        <div class="check-item" id="check-cart">
+            🛒 cart オブジェクト: <span class="status">チェック中...</span>
+        </div>
+        <div class="check-item" id="check-auth-obj">
+            👤 auth オブジェクト: <span class="status">チェック中...</span>
+        </div>
+        <div class="check-item" id="check-localstorage">
+            💾 LocalStorage: <span class="status">チェック中...</span>
+        </div>
+    </div>
+
+    <h2>🧪 テスト機能</h2>
+    <button onclick="testLogin()">ログインテスト</button>
+    <button onclick="testCart()">カートテスト</button>
+    <button onclick="clearStorage()">LocalStorageクリア</button>
+
+    <h2>📊 現在のデータ</h2>
+    <pre id="dataDisplay"></pre>
+
+    <h2>🐛 コンソールエラー</h2>
+    <pre id="errorDisplay">エラーなし</pre>
+
+    <script src="js/common.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        // エラーをキャッチ
+        window.addEventListener('error', function(e) {
+            const errorDisplay = document.getElementById('errorDisplay');
+            errorDisplay.textContent = `エラー: ${e.message}\nファイル: ${e.filename}\n行: ${e.lineno}`;
+            errorDisplay.style.color = '#f44336';
+        });
+
+        // チェック実行
+        setTimeout(() => {
+            // common.js チェック
+            const checkCommon = document.getElementById('check-common');
+            if (typeof showToast === 'function') {
+                checkCommon.classList.add('success');
+                checkCommon.querySelector('.status').textContent = '✅ 成功';
+            } else {
+                checkCommon.classList.add('error');
+                checkCommon.querySelector('.status').textContent = '❌ 失敗';
+            }
+
+            // auth.js チェック
+            const checkAuth = document.getElementById('check-auth');
+            if (typeof Auth === 'function') {
+                checkAuth.classList.add('success');
+                checkAuth.querySelector('.status').textContent = '✅ 成功';
+            } else {
+                checkAuth.classList.add('error');
+                checkAuth.querySelector('.status').textContent = '❌ 失敗';
+            }
+
+            // cart オブジェクトチェック
+            const checkCart = document.getElementById('check-cart');
+            if (typeof cart !== 'undefined') {
+                checkCart.classList.add('success');
+                checkCart.querySelector('.status').textContent = '✅ 存在する';
+            } else {
+                checkCart.classList.add('error');
+                checkCart.querySelector('.status').textContent = '❌ 存在しない';
+            }
+
+            // auth オブジェクトチェック
+            const checkAuthObj = document.getElementById('check-auth-obj');
+            if (typeof auth !== 'undefined') {
+                checkAuthObj.classList.add('success');
+                checkAuthObj.querySelector('.status').textContent = '✅ 存在する';
+            } else {
+                checkAuthObj.classList.add('error');
+                checkAuthObj.querySelector('.status').textContent = '❌ 存在しない';
+            }
+
+            // LocalStorage チェック
+            const checkLS = document.getElementById('check-localstorage');
+            try {
+                localStorage.setItem('test', 'test');
+                localStorage.removeItem('test');
+                checkLS.classList.add('success');
+                checkLS.querySelector('.status').textContent = '✅ 利用可能';
+            } catch (e) {
+                checkLS.classList.add('error');
+                checkLS.querySelector('.status').textContent = '❌ 利用不可';
+            }
+
+            // データ表示
+            updateDataDisplay();
+        }, 500);
+
+        function updateDataDisplay() {
+            const dataDisplay = document.getElementById('dataDisplay');
+            const data = {
+                'ログイン状態': typeof auth !== 'undefined' ? auth.isLoggedIn() : 'auth未定義',
+                'ユーザー情報': localStorage.getItem('machikado_user'),
+                'カート情報': localStorage.getItem('machikado_cart'),
+                'カート商品数': typeof cart !== 'undefined' ? cart.getItemCount() : 'cart未定義'
+            };
+            dataDisplay.textContent = JSON.stringify(data, null, 2);
+        }
+
+        function testLogin() {
+            if (typeof auth === 'undefined') {
+                alert('❌ auth オブジェクトが存在しません！\nauth.js が読み込まれていない可能性があります。');
+                return;
+            }
+
+            const result = auth.login('buyer@example.com', 'password');
+            if (result.success) {
+                alert('✅ ログイン成功！\n' + JSON.stringify(result.user, null, 2));
+                updateDataDisplay();
+            } else {
+                alert('❌ ログイン失敗:\n' + result.error);
+            }
+        }
+
+        function testCart() {
+            if (typeof cart === 'undefined') {
+                alert('❌ cart オブジェクトが存在しません！\ncommon.js が読み込まれていない可能性があります。');
+                return;
+            }
+
+            cart.addItem(1);
+            alert('✅ カートに商品を追加しました！\n現在の商品数: ' + cart.getItemCount());
+            updateDataDisplay();
+        }
+
+        function clearStorage() {
+            localStorage.clear();
+            alert('✅ LocalStorageをクリアしました');
+            updateDataDisplay();
+            setTimeout(() => location.reload(), 500);
+        }
+
+        // 自動更新
+        setInterval(updateDataDisplay, 2000);
+    </script>
+
+    <hr style="margin: 40px 0;">
+    <h2>📝 トラブルシューティング</h2>
+    
+    <h3>❌ もし auth.js や common.js が「失敗」の場合：</h3>
+    <ol>
+        <li><strong>ファイルが存在するか確認:</strong>
+            <ul>
+                <li>GitHub リポジトリで <code>js/auth.js</code> と <code>js/common.js</code> が存在するか確認</li>
+            </ul>
+        </li>
+        <li><strong>ブラウザのコンソールを確認:</strong>
+            <ul>
+                <li>F12 → Console タブ</li>
+                <li>404エラーが出ていないか確認</li>
+            </ul>
+        </li>
+        <li><strong>GitHub Pagesのビルド状況確認:</strong>
+            <ul>
+                <li>GitHub リポジトリ → Actions タブ</li>
+                <li>最新のワークフローが成功しているか確認</li>
+            </ul>
+        </li>
+        <li><strong>キャッシュをクリア:</strong>
+            <ul>
+                <li>Ctrl + Shift + R (Windows)</li>
+                <li>Cmd + Shift + R (Mac)</li>
+            </ul>
+        </li>
+    </ol>
+
+    <h3>✅ もし全て「成功」なのにログインできない場合：</h3>
+    <ol>
+        <li>上の「ログインテスト」ボタンをクリックして動作確認</li>
+        <li>成功したら、login.html のフォーム送信に問題がある可能性</li>
+    </ol>
+
+    <hr>
+    <p><a href="index.html">← トップページに戻る</a> | <a href="login.html">ログインページ →</a></p>
+</body>
+</html>
